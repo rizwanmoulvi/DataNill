@@ -1,3 +1,47 @@
+# DataNill - A Secret Data Crowdsourcing Platform On Nillion.
+
+In the current times when AI models are entering the market they need more and more data that can be non-sensitive and sensitive, models that are used in the niche industries like health, financial and other sectors need critical and private data but current data collection system does not have any way to facilitate private data collection, storage, and usage. Participants are willing to submit the private data but are hesitant due to lack of trust and mechanism to collet and manage data in current data crowdsourcing platforms.
+
+To solve the issue we have DataNill powered by Nillion, which enables private data crowdsourcing in secret way. Where users can store their private data secretly and only allow acces to the data to the users they want to share with in a trustless environment. Data is blind validated by data collectors using Nillion's blind computation. This ensures that no private falls in the wrong hands and used for unintended purpose.
+
+## Operations And Payments
+
+For Operations and Payments DataNill is using Edu-Chain which is a Layer-3 EVM compatible that has high tps and low gas fees, with this DataNill enables a transaprent payment system and operations on the platform so that a fair and open system is created.
+
+## DataNill Is Both Private And Transparent At The Same Time.
+
+## How To Use
+
+## For Data Collectors
+
+1. Create a Campaign ID with a private campaign seed (remember it) and connect to Nillion Connect.
+2. Submit the required data for campaign creation like name, description, budget, number of tasks, etc.
+3. Click on 'Create Campaign Button' then Metamask Wallet opens. Send the budget and sign transaction.
+4. Your campaign is created is successfully.
+5. Now data submitters will submit 'Data Store' details from Nillion where they stored.
+6. You can run blind validation on the collected data to validate the data using parameters that you want in data.
+7. Access the data that is validated and pay the data submitter.
+
+## For Data Submitters
+
+1. Copy Campaign ID from campaigns page that you want to submit data to.
+2. Go to submit data page and connect to Nillion Client by creating a User ID.
+3. Then submit the data and give a data-name to store.
+4. Store the data and copy the 'Store ID' and 'Data Name'
+5. Go back to campaigns page select the campaign you wanted to submit data to and click on submit entry button.
+6. Provide the 'Store ID' and 'Data name' in for and submit by signing a transaction on MetaMask.
+7. When the data collector accept the entry you will recieve the payment.
+
+
+
+
+
+
+
+
+
+# Nillion Technical Documentation
+
 # Nillion Operations and Blind Compute Demo
 
 This is a demo of the JavaScript Nillion Client working with payments connected to nillion-devnet or the Nillion Testnet.
