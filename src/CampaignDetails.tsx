@@ -9,15 +9,18 @@ import { networks } from './utils/networks';
 import ConnectionSection from './nillion/components/FetchDataClient';
 import { Button } from '@mui/material';
 
-const CONTRACT_ADDRESS = '0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d'; //0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d
+
+const CONTRACT_ADDRESS = '0xd3c526Cd1353eFbCC54cC5b940296E56eE942994'; //0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d
 
 const CampaignDetails = () => {
   const { owner, name, id } = useParams<{ owner: string; name: string; id: string }>();
   const [entries, setEntries] = useState<{ storeId: string; dataName: string; submitter: string; paid: boolean; entryId: number }[]>([]);
   const [loading, setLoading] = useState(true);
-  const [client, setClient] = useState<NillionClient>(null!);
+  const [client, setClient] = useState<NillionClient | null>(null);
   const [userkey, setUserKey] = useState<string | null>(null);
   const [connectedWallet, setConnectedWallet] = useState<string | null>(null);
+
+  
 
   // Helper function to check if the user is the creator of the campaign
   const isCreator = (wallet: string | null, owner: string) =>
@@ -162,7 +165,8 @@ const CampaignDetails = () => {
                 <p>{entry.paid ? 'Yes' : 'No'}</p>
               </div>
               {/* Conditionally render the "Pay" button */}
-              {isCreator(connectedWallet ?? '', owner) && !entry.paid && (
+              
+              {isCreator(connectedWallet ?? '', owner ?? '') && !entry.paid && (
                 <Button
                   onClick={() => handlePay(entry.entryId)}
                   variant="contained"
@@ -183,7 +187,9 @@ const CampaignDetails = () => {
           setUserKey={setUserKey}
           setClient={setClient}
         />
-        <RetrieveSecret nillionClient={client} />
+        {client && (
+            <RetrieveSecret nillionClient={client} />
+        )}
       </div>
     </div>
   );
