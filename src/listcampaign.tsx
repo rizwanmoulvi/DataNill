@@ -23,6 +23,7 @@ interface Campaign {
   active: boolean;
   remainingBudget: string;
   entryCount: number;
+  owner: string;
 }
 
 const ListCampaigns: React.FC = () => {
@@ -41,7 +42,7 @@ const ListCampaigns: React.FC = () => {
   const [network, setNetwork] = useState('');
   
 
-  const CONTRACT_ADDRESS = '0x2C409aDe7ae8949f990Af584181851780C9182DD';
+  const CONTRACT_ADDRESS = '0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d'; //0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
@@ -58,7 +59,6 @@ const ListCampaigns: React.FC = () => {
     if (accounts.length !== 0) {
       const account = accounts[0];
       console.log('Found an authorized account:', account);
-      // console.log("Rizz",contractAbi.abi)
       setCurrentAccount(account);
     } else {
       console.log('No authorized account found');
@@ -99,13 +99,15 @@ const ListCampaigns: React.FC = () => {
           const campaign = {
             id: i,
             name: campaignDetails[0],
-            UID: campaignDetails[1],
-            budget: campaignDetails[2].toString(),
-            numTasks: campaignDetails[3].toString(),
-            payPerTask: campaignDetails[4].toString(),
-            active: campaignDetails[5],
-            remainingBudget: campaignDetails[6].toString(),
-            entryCount: campaignDetails[7].toString(),
+            description: campaignDetails[1],
+            UID: campaignDetails[2],
+            budget: campaignDetails[3].toString(),
+            numTasks: campaignDetails[4].toString(),
+            payPerTask: campaignDetails[5].toString(),
+            active: campaignDetails[6],
+            remainingBudget: campaignDetails[7].toString(),
+            entryCount: campaignDetails[8].toString(),
+            owner: campaignDetails[9].toString(),
           };
   
           deployedCampaigns.push(campaign);
@@ -178,7 +180,7 @@ const ListCampaigns: React.FC = () => {
   };
 
   const handleCampaignClick = (campaign: Campaign) => {
-    navigate(`/campaign/${campaign.id}`);
+    navigate(`/campaign/${campaign.owner}/${campaign.name}/${campaign.id}`);
   };
 
   return (
@@ -189,6 +191,7 @@ const ListCampaigns: React.FC = () => {
         {campaignsToDisplay.map((campaign) => (
           <li key={campaign.id} className="bg-white p-4 rounded-lg shadow-md">
             <h3 className="text-xl font-bold mb-2">{campaign.name}</h3>
+            <p>Description: {campaign.description}</p>
             <p>Campaign ID: <CopyableString
               text={campaign.UID}
               copyText={campaign.UID}

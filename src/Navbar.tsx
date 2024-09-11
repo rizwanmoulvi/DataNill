@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
   const [network, setNetwork] = useState('');
   const [campaigns, setCampaigns] = useState<any[]>([]); // Use any[] to avoid TypeScript warnings.
 
-  const CONTRACT_ADDRESS = '0x2C409aDe7ae8949f990Af584181851780C9182DD';
+  const CONTRACT_ADDRESS = '0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d';
 
   const connectWallet = async () => {
     try {
@@ -51,7 +51,6 @@ const Navbar: React.FC = () => {
     if (accounts.length !== 0) {
       const account = accounts[0];
       console.log('Found an authorized account:', account);
-      // console.log("Rizz",contractAbi.abi)
       setCurrentAccount(account);
     } else {
       console.log('No authorized account found');
@@ -66,47 +65,6 @@ const Navbar: React.FC = () => {
     });
   };
 
-  const switchNetwork = async () => {
-    if (window.ethereum) {
-      try {
-        await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0xa045c' }],
-        });
-      } catch (error: any) {
-        if (error.code === 4902) {
-          try {
-            await window.ethereum.request({
-              method: 'wallet_addEthereumChain',
-              params: [
-                {
-                  chainId: '0xa045c',
-                  chainName: 'Edu-Chain',
-                  rpcUrls: ['https://rpc.open-campus-codex.gelato.digital'],
-                  nativeCurrency: {
-                    name: 'EDU',
-                    symbol: 'EDU',
-                    decimals: 18,
-                  },
-                  blockExplorerUrls: [
-                    'https://opencampus-codex.blockscout.com/',
-                  ],
-                },
-              ],
-            });
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          console.error(error);
-        }
-      }
-    } else {
-      alert(
-        'MetaMask is not installed. Please install it to use this app: https://metamask.io/download.html'
-      );
-    }
-  };
 
   const fetchCampaigns = async () => {
     try {

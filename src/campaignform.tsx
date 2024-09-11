@@ -4,10 +4,11 @@ import { ethers } from 'ethers';
 import contractAbi from './utils/abi.json';
 import { networks } from './utils/networks';
 
-const CONTRACT_ADDRESS = '0x2C409aDe7ae8949f990Af584181851780C9182DD';
+const CONTRACT_ADDRESS = '0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d'; //0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d
 
 const CampaignForm: React.FC = () => {
   const [name, setName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [UID, setUID] = useState<string>('');
   const [budget, setBudget] = useState<number | string>('');
   const [numTasks, setNumTasks] = useState<number | string>('');
@@ -49,24 +50,26 @@ const CampaignForm: React.FC = () => {
 
   const createCampaign = async (event: React.FormEvent) => {
     event.preventDefault();
-
+  
     // Validate input values
-    if (!name || !UID || !budget || !numTasks || !payPerTask) {
+    if (!name || !description || !UID || !budget || !numTasks || !payPerTask) {
       setErrorMessage('Please fill in all fields');
       return;
     }
   
-    // Convert budget to wei
+    // Convert budget and payPerTask to wei
     const budgetInWei = ethers.utils.parseEther(budget.toString());
+    const payPerTaskInWei = ethers.utils.parseEther(payPerTask.toString());
   
     setLoading(true);
     setErrorMessage('');
     console.log("Creating campaign with details:", {
       name,
+      description,
       UID,
       budget: budgetInWei,
       numTasks,
-      payPerTask,
+      payPerTask: payPerTaskInWei,
       active
     });
   
@@ -77,19 +80,13 @@ const CampaignForm: React.FC = () => {
         const signer = provider.getSigner();
         const contract = new ethers.Contract(CONTRACT_ADDRESS, contractAbi.abi, signer);
   
-        console.log('Budget before conversion:', budget);
-        console.log('PayPerTask before conversion:', payPerTask);
-        console.log("Going to pop wallet now to pay gas...");
-
-        const budgetInWei = ethers.utils.parseEther(budget.toString());
-        const payPerTaskInWei = ethers.utils.parseEther(payPerTask.toString());
-
         console.log('Budget in Wei:', budgetInWei.toString());
         console.log('PayPerTask in Wei:', payPerTaskInWei.toString());
   
         // Call the createCampaign function
         const tx = await contract.createCampaign(
           name,
+          description,
           UID,
           budgetInWei,
           numTasks,
@@ -110,6 +107,7 @@ const CampaignForm: React.FC = () => {
           );
           // Reset form fields
           setName('');
+          setDescription('');
           setUID('');
           setBudget('');
           setNumTasks('');
@@ -128,6 +126,8 @@ const CampaignForm: React.FC = () => {
       setLoading(false);
     }
   };
+  
+
 
   useEffect(() => {
     checkIfWalletIsConnected();
@@ -141,6 +141,10 @@ const CampaignForm: React.FC = () => {
         <label>
           Campaign Name:<br />
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+        </label><br />
+        <label>
+          Description:<br />
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
         </label><br />
         <label>
           Campaign ID:<br />

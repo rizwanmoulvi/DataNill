@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <CreateCampaign />,
       },
       {
-        path: "/campaign/:id",
+        path: "/campaign/:owner/:name/:id", //<Route path="/campaign/:owner/:name/:id" element={<CampaignDetails />} />
         element: <CampaignDetails />,
       },
     ],
