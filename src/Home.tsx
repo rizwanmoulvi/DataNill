@@ -28,15 +28,10 @@ export default function Main() {
         <p className="text-9xl font-bold text-ba text-center mb-10">
           Decentralized Secret Data Crowd Sourcing
         </p>
-        <iframe
-          width="1000"
-          height="600"
-          src="https://www.youtube.com/embed/C_VwqjxqhLM"
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <video width="1000" height="800" controls>
+        <source src="/videos/untitled.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       </div>
 
       <div className="bg-ba pt-20 pb-20 pl-10 pr-10">
