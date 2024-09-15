@@ -60,6 +60,7 @@ export default function Main() {
     setTabIndex(newValue);
   };
 
+
   return (
     <div className='flex'>
       <div className='w-2/5 pl-10 pt-6 pr-5 text-mg flex flex-col '>
