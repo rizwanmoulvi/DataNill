@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
   const [network, setNetwork] = useState('');
   const [campaigns, setCampaigns] = useState<any[]>([]);
 
-  const CONTRACT_ADDRESS = '0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d';
+  const CONTRACT_ADDRESS = '0x06972fac237240a2BF0F28129a6fb7c3418A347A'; //0x06972fac237240a2BF0F28129a6fb7c3418A347A
 
   const connectWallet = async () => {
     try {
@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
       try {
         await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: "0xa045c" }],
+          params: [{ chainId: "0xaa36a7" }],
         });
       } catch (error) {
         if ((error as any).code === 4902) {
@@ -74,15 +74,15 @@ const Navbar: React.FC = () => {
               method: "wallet_addEthereumChain",
               params: [
                 {
-                  chainId: "0xa045c",
-                  chainName: "Edu-Chain",
-                  rpcUrls: ["https://rpc.open-campus-codex.gelato.digital"],
+                  chainId: "0xaa36a7",
+                  chainName: "Sepolia",
+                  rpcUrls: ["https://ethereum-sepolia-rpc.publicnode.com"],
                   nativeCurrency: {
-                    name: "EDU",
-                    symbol: "EDU",
+                    name: "ETH",
+                    symbol: "ETH",
                     decimals: 18,
                   },
-                  blockExplorerUrls: ["https://opencampus-codex.blockscout.com/"],
+                  blockExplorerUrls: ["https://sepolia.etherscan.io/"],
                 },
               ],
             });
@@ -181,13 +181,13 @@ const Navbar: React.FC = () => {
             </button>
           </div>
           <div className="bg-white text-black font-bold flex p-3 rounded-lg">
-            {network === "Edu-Chain" ? (
+            {network === "Sepolia" ? (
               <p>
                 Wallet: {currentAccount.slice(0, 6)}...{currentAccount.slice(-4)}
               </p>
             ) : (
               <button onClick={switchNetwork} className="cta-button mint-button">
-                Switch to Edu-Chain
+                Switch to Sepolia 
               </button>
             )}
           </div>

@@ -42,7 +42,7 @@ const ListCampaigns: React.FC = () => {
   const [network, setNetwork] = useState('');
   
 
-  const CONTRACT_ADDRESS = '0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d'; //0x24f9150e77637673Eeb09D4Df456f9d2a82aDC7d
+  const CONTRACT_ADDRESS = '0x06972fac237240a2BF0F28129a6fb7c3418A347A'; //0x06972fac237240a2BF0F28129a6fb7c3418A347A
 
   const checkIfWalletIsConnected = async () => {
     const { ethereum } = window;
