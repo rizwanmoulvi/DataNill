@@ -443,4 +443,4 @@ export const CONTRACT_ABI: any = [
 	}
 ];
   
-  export const CONTRACT_ADDRESS: string = '0xBD7388875afcFd8ED303855E1888e60D13860750';
+  export const CONTRACT_ADDRESS: string = '0xA4f164dB1a6df3052630223070E8b0e405658D9d';

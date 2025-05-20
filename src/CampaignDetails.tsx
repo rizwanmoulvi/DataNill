@@ -10,7 +10,7 @@ import ConnectionSection from './nillion/components/FetchDataClient';
 import { Button } from '@mui/material';
 
 
-const CONTRACT_ADDRESS = '0x06972fac237240a2BF0F28129a6fb7c3418A347A'; //0x06972fac237240a2BF0F28129a6fb7c3418A347A
+const CONTRACT_ADDRESS = '0xA4f164dB1a6df3052630223070E8b0e405658D9d'; 
 
 const CampaignDetails = () => {
   const { owner, name, id } = useParams<{ owner: string; name: string; id: string }>();

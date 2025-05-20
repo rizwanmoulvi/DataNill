@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
   const [network, setNetwork] = useState('');
   const [campaigns, setCampaigns] = useState<any[]>([]);
 
-  const CONTRACT_ADDRESS = '0x06972fac237240a2BF0F28129a6fb7c3418A347A'; //0x06972fac237240a2BF0F28129a6fb7c3418A347A
+  const CONTRACT_ADDRESS = '0xA4f164dB1a6df3052630223070E8b0e405658D9d'; 
 
   const connectWallet = async () => {
     try {
@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
       try {
         await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: "0xaa36a7" }],
+          params: [{ chainId: "0x1e808f" }],
         });
       } catch (error) {
         if ((error as any).code === 4902) {
@@ -74,15 +74,15 @@ const Navbar: React.FC = () => {
               method: "wallet_addEthereumChain",
               params: [
                 {
-                  chainId: "0xaa36a7",
-                  chainName: "Sepolia",
-                  rpcUrls: ["https://ethereum-sepolia-rpc.publicnode.com"],
+                  chainId: "0x1e808f",
+                  chainName: "XPhere-Testnet",
+                  rpcUrls: ["ttp://testnet.x-phere.com"],
                   nativeCurrency: {
-                    name: "ETH",
-                    symbol: "ETH",
+                    name: "XPT",
+                    symbol: "XPT",
                     decimals: 18,
                   },
-                  blockExplorerUrls: ["https://sepolia.etherscan.io/"],
+                  blockExplorerUrls: ["https://xpt.tamsa.io/tx/"],
                 },
               ],
             });
@@ -181,13 +181,13 @@ const Navbar: React.FC = () => {
             </button>
           </div>
           <div className="bg-white text-black font-bold flex p-3 rounded-lg">
-            {network === "Sepolia" ? (
+            {network === "XPhere-Testnet" ? (
               <p>
                 Wallet: {currentAccount.slice(0, 6)}...{currentAccount.slice(-4)}
               </p>
             ) : (
               <button onClick={switchNetwork} className="cta-button mint-button">
-                Switch to Sepolia 
+                Switch to Xphere
               </button>
             )}
           </div>
